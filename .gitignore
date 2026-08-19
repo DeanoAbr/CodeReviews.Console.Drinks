@@ -452,3 +452,8 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Hermes Agent plans & local runtime state
+.hermes/
+drinks_userdata.json
+
