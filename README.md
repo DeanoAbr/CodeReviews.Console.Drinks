@@ -92,13 +92,13 @@ Key decisions:
 
 ## 🧠 Reflection
 
-Building this app was my first real experience consuming a third-party REST API, and it taught me more about real-world development than any tutorial. The biggest surprise was how untidy production JSON actually is. TheCocktailDB doesn't hand you clean objects — it gives you `strIngredient1` through `strIngredient15`, and deciding how to model that forced me to think hard about data design. I went with explicit properties plus a helper method that pairs ingredients with their measures, which keeps the model readable and the UI logic simple.
+This was my first time actually working with a third-party API, and I learned more from it than I did from any tutorial. Real-world JSON can be quite messy. TheCocktailDB doesn't just hand you clean, tidy objects, you get `strIngredient1` all the way up to `strIngredient15`, and untangling that made me actually stop and think about data design instead of just bashing things together until it worked. I landed on explicit properties plus a helper method that pairs each ingredient with its measure. Kept things readable, kept the UI logic from turning into spaghetti.
 
-Error handling also took more thought than I expected. A crashed API, a timeout, and an empty result set are three completely different failures, and each needs a different, friendly response — the app shouldn't just die because the vendor had a bad day. Wrapping every call in the service layer and returning structured results meant the UI never has to guess what went wrong.
+Error handling was a bigger headache than I thought it'd be. The API crashed, timed out and empty result sets needed their own responses. The app can't not work because the server is struggling. So I wrapped every call at the service layer and had it return structured results, which meant the UI never had to sit there guessing what went wrong.
 
-The most fun part was `Spectre.Console.ImageSharp`. Rendering an actual drink photo in the terminal felt like magic the first time it worked, and it turned a plain menu app into something you can proudly show a restaurant owner.
+The most fun part was getting `Spectre.Console.ImageSharp` working. The first time an actual drink photo rendered in the terminal I was amped. The console keeps surprising me with what it can handle.
 
-If I did it again, I'd extract an interface for the API client so the service is mockable without an HTTP layer, and I'd probably switch persistence to SQLite once the data grows beyond a single JSON file. Favorites and view counts work great now, but they'd scale better in a real database.
+If I went back and did it again, I'd pull out an interface for the API client so I could mock the service without dragging in a real HTTP layer. I'd also probably swap persistence over to SQLite once the data grows past what a single JSON file can comfortably hold — favorites and view counts are fine for now, but they'd hold up a lot better in a proper database.
 
 ## 📝 Project Structure
 
